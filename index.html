@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información del Producto</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            line-height: 1.6;
+            background: #f8f9fa;
+        }
+        .header {
+            background: #ffc107;
+            color: #212529;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .content-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        pre { 
+            background: #f4f4f4; 
+            padding: 15px; 
+            border-radius: 5px; 
+            white-space: pre-wrap;
+            border-left: 4px solid #ffc107;
+        }
+        .loading {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📦 Información del Producto</h1>
+        <p>Especificaciones y detalles del producto</p>
+    </div>
+    
+    <div class="content-box">
+        <div id="content" class="loading">Cargando información del producto...</div>
+    </div>
+    
+    <script>
+        fetch('producto-info.txt')
+            .then(response => response.text())
+            .then(text => {
+                document.getElementById('content').innerHTML = '<pre>' + text + '</pre>';
+            })
+            .catch(error => {
+                document.getElementById('content').innerHTML = '<p style="color: red;">❌ Error cargando la información del producto.</p>';
+            });
+    </script>
+</body>
+</html>
